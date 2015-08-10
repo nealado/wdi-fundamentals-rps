@@ -25,6 +25,7 @@ function getPlayerMove(move) {
     // Write an expression that operates on a variable called `move`
     // If a `move` has a value, your expression should evaluate to that value.
     // However, if `move` is not specified / is null, your expression should equal `getInput()`.
+    // If there is no move, then the function getInput runs
    return move || getInput();
 }
 
@@ -68,7 +69,7 @@ function getWinner(playerMove,computerMove) {
     }
 
 
-    // Write code that plays 'Rock, Paper, Scissors' until either the player or the computer has won five times.
+    // The below code plays 'Rock, Paper, Scissors' until either the player or the computer has won five times.
 
 function playToFive() {
     console.log("Let's play Rock, Paper, Scissors");
@@ -81,21 +82,31 @@ while (computerWins < 5 && playerWins < 5) {
     var computerMove = getComputerMove();
     var winner = getWinner(playerMove, computerMove);
     
+    //below code keeps track of the number of wins the player & computer have, adds 1 to the appropriate variable
+    //after each round, and in the case of a tie, does nothing. 
+
     if (winner == "computer") {
-        computerWins = computerWins + 1;
+        computerWins++;
     }
     else if (winner == "player") {
-        playerWins = playerWins + 1;
+        playerWins++;
     }
     else if (winner == "tie") {
-        computerWins = computerWins + 0;
-        playerWins = playerWins + 0;
+        computerWins = computerWins;
+        playerWins = playerWins;
     }
-    
+
+    //Prints out the current score & lets you know where you are in the loop 
+
     console.log('Player chose ' + playerMove + ' while Computer chose ' + computerMove);
     console.log('The score is currently ' + playerWins + ' to ' + computerWins + ' of 5');
 }
+    //when the loop is finished, either a player or the computer has won 5 times, return tells
+    //the game to end, and tells us who the winner is in [x, y] format
+
     return [playerWins, computerWins];
 }
+
+//starts the game
 
 playToFive();
